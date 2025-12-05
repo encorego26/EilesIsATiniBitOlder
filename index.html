@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EilesIsATiniBitOlder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="EilesIsATiniBitOlder" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+    .app-shell { position: fixed; inset: 0; display: flex; flex-direction: column; background: #000; }
+    .app-frame { flex: 1; border: none; width: 100%; height: 100%; }
+    .loading {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, sans-serif;
+      font-size: 16px; background: #000; z-index: 10;
+    }
+    .loading.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div id="loading" class="loading">Loading EilesIsATiniBitOlder…</div>
+    <iframe id="appFrame" class="app-frame" src="https://relink.au/eilesisatinibitolder"></iframe>
+  </div>
+  <script>
+    const frame = document.getElementById('appFrame');
+    const loading = document.getElementById('loading');
+    frame.addEventListener('load', () => loading.classList.add('hidden'));
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW failed', err));
+      });
+    }
+  </script>
+</body>
+</html>
